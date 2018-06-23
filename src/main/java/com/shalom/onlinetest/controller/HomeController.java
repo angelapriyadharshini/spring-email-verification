@@ -13,9 +13,13 @@ public class HomeController {
 	
 	// recruiters
 	@GetMapping("/recruiters")
-	public String showRecruiters() {
+	public String showRecruitersContent() {
 		return "recruiters";
 	}
 	
-	
+	// recruiters
+		@GetMapping("/admins")
+		public String showAdminContent() {
+			return "admins";
+		}
 }

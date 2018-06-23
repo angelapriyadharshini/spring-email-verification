@@ -18,15 +18,25 @@
 		<security:authentication property="principal.authorities" />
 	</p>
 
-	<hr>
-	<!--  only for recruiters -->
-	<p>
-		<a href="${pageContext.request.contextPath}/recruiters">Recruiters
-			Content</a>
-	</p>
+	<security:authorize access="hasRole('RECRUITER')">
 
-	<hr>
+		<!--  only for recruiters -->
+		<p>
+			<a href="${pageContext.request.contextPath}/recruiters">Recruiters
+				Content</a>
+		</p>
+	</security:authorize>
 
+	<security:authorize access="hasRole('ADMIN')">
+
+		<!--  only for admins -->
+		<p>
+			<a href="${pageContext.request.contextPath}/admins">Admins
+				Content</a>
+		</p>
+	</security:authorize>
+	
+	<hr>
 	<form:form action="${pageContext.request.contextPath}/logout"
 		method="POST">
 
