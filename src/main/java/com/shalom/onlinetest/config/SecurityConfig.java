@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		// use jdbc authentication
-		auth.jdbcAuthentication().dataSource(securityDS);
+		auth.jdbcAuthentication().dataSource(securityDS).usersByUsernameQuery(
+				   "select username,password, enabled from user where username=?")
+		  .authoritiesByUsernameQuery(
+		   "select username, role from role_user where username=?");
 	}
 
 	@Override

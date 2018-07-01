@@ -55,8 +55,8 @@ public class Config {
 			throw new RuntimeException(ex);
 		}
 		// log connection properties
-		logger.info(">>> jdbc.url=" +env.getProperty("jdbc.url"));
-		logger.info(">>> jdbc.user=" +env.getProperty("jdbc.user"));
+//		logger.info(">>> jdbc.url=" +env.getProperty("jdbc.url"));
+//		logger.info(">>> jdbc.user=" +env.getProperty("jdbc.user"));
 		
 		// set  db connection properties (optional)
 		securityDS.setJdbcUrl(env.getProperty("jdbc.url"));
