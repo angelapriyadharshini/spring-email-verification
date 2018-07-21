@@ -1,38 +1,66 @@
 package com.shalom.onlinetest.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.shalom.onlinetest.validation.FieldMatch;
+import com.shalom.onlinetest.validation.ValidEmail;
+
+@FieldMatch.List({
+		@FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match") })
 public class UserDTO {
-	@NotNull
-	private int id;
-	
-	@NotNull
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
+	private String userName;
+
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
+	private String password;
+
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
+	private String matchingPassword;
+
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	private String firstName;
-	
-	@NotNull
+
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	private String lastName;
-	
-	@NotNull
+
+	@ValidEmail
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	private String email;
 	
-	@NotNull
-	private String password;
-	
-	@NotNull
-	private String confirmPassword;
-	
-	@NotNull
+	@NotNull(message = "is required")
+	@Column(name="enabled")
 	private boolean enabled;
-	
-	@NotNull
-	private int role;
 
-	public int getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
 	}
 
 	public String getFirstName() {
@@ -59,22 +87,6 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -82,22 +94,5 @@ public class UserDTO {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
-	public int getRole() {
-		return role;
-	}
-
-	public void setRole(int role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", confirmPassword=" + confirmPassword + ", enabled=" + enabled + ", role="
-				+ role + "]";
-	}
-	
-	
 
 }

@@ -14,6 +14,7 @@
 		<springframework.version>5.0.6.RELEASE</springframework.version>
 		<springsecurity.version>5.0.5.RELEASE</springsecurity.version>
 		<hibernatevalidator.version>6.0.2.Final</hibernatevalidator.version>
+		<springboot.version>2.0.2.RELEASE</springboot.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -48,11 +49,18 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 
-		<!-- spring-boot-starter-data-jpa -->
+		<!-- Spring Transactions -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.0.2.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+		<!-- Spring ORM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${springframework.version}</version>
 		</dependency>
 
 		<!-- MySQL and C3P0 support -->
@@ -68,26 +76,13 @@
 			<version>0.9.5.2</version>
 		</dependency>
 
-		<!-- Validation -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.0.Final</version>
-		</dependency>
-
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernatevalidator.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator-annotation-processor</artifactId>
-			<version>${hibernatevalidator.version}</version>
-		</dependency>
-
-		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>

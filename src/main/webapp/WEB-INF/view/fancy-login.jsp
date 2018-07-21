@@ -27,7 +27,7 @@
 
 	<div>
 
-		<div id="loginbox" style="margin-top: 50px "
+		<div id="loginbox" style="margin-top: 50px"
 			class="mainbox col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2">
 
 			<div class="panel panel-info">
@@ -82,7 +82,10 @@
 								<button type="submit" class="btn btn-success">Login</button>
 							</div>
 						</div>
-
+						<div>
+							<a href="${pageContext.request.contextPath}/registration"
+								class="btn btn-primary" role="button" aria-pressed="true">Register</a>
+						</div>
 					</form:form>
 
 				</div>

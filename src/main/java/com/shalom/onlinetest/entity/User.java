@@ -1,4 +1,4 @@
-package com.shalom.onlinetest.persistence.entity;
+package com.shalom.onlinetest.entity;
 
 import java.util.List;
 
