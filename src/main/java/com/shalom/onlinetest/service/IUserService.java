@@ -8,7 +8,7 @@ import com.shalom.onlinetest.error.EmailExistsException;
 
 @Service
 public interface IUserService {
-	public void registerUser(UserDTO userDto) throws EmailExistsException;
+	public void registerUser(UserDTO userDto);
 
 	public User findByEmail(String email);
 }

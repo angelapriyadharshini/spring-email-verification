@@ -1,4 +1,4 @@
-package com.shalom.onlinetest.config;
+	package com.shalom.onlinetest.config;
 
 import javax.sql.DataSource;
 
@@ -25,9 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// use jdbc authentication
 		auth.jdbcAuthentication().dataSource(securityDS).usersByUsernameQuery(
-				   "select username,password, enabled from user where username=?")
+				   "select email,password, enabled from user where email=?")
 		  .authoritiesByUsernameQuery(
-		   "select username, role from role_user where username=?");
+		   "select user_id, role_id from role_user where user_id=?");
 	}
 	
 

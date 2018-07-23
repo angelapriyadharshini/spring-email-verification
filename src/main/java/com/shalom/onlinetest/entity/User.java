@@ -1,7 +1,9 @@
 package com.shalom.onlinetest.entity;
 
+import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="email")
@@ -35,9 +37,9 @@ public class User {
 	@Column(name="enabled")
 	private boolean enabled;
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roles;
+	private Collection<Role> roles;
 
 	public int getId() {
 		return id;
@@ -87,11 +89,26 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public List<Role> getRoles() {
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 	
 	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
+
+	public User() {
+	}
+
+	public User(int id, String email, String firstName, String lastName, String password, boolean enabled,
+			Collection<Role> roles) {
+		this.id = id;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.enabled = enabled;
 		this.roles = roles;
 	}
 

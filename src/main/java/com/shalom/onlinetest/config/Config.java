@@ -16,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -23,6 +24,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableTransactionManagement
 @ComponentScan(basePackages = "com.shalom.onlinetest")
 @PropertySource("classpath:persistence-mysql.properties")
 public class Config {

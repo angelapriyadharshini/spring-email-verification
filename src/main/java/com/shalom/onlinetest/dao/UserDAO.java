@@ -33,7 +33,6 @@ public class UserDAO implements IUserDAO {
 	public void save(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(user);
-		
 	}
 
 }

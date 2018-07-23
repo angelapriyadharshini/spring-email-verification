@@ -1,19 +1,17 @@
 package com.shalom.onlinetest.controller;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.shalom.onlinetest.dto.UserDTO;
 import com.shalom.onlinetest.entity.User;
-import com.shalom.onlinetest.error.EmailExistsException;
 import com.shalom.onlinetest.service.IUserService;
 
 //@RequestMapping("/account")
@@ -22,6 +20,8 @@ public class AccountController {
 
 	@Autowired
 	private IUserService service;
+	
+	private Logger logger = Logger.getLogger(getClass().getName());
 
 	@GetMapping("/login")
 	public String login() {
@@ -43,11 +43,12 @@ public class AccountController {
 			return "registration";
 		}
 		registeredUser = service.findByEmail(email);
-		if(registeredUser==null) {
-			model.addAttribute("registrationFailed","User already exists.");
+		if(registeredUser!=null) {
+			model.addAttribute("error","There is already an account with this email: " + email);
+			logger.info("There is already an account with this email: " + email);
 			return "registration";
 		}
-		
+		service.registerUser(userDto);
 		return "registrationSuccess";
 	}
 }

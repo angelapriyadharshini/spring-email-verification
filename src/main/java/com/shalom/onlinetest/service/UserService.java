@@ -23,11 +23,8 @@ public class UserService implements IUserService {
 
 	@Override
 	@Transactional
-	public void registerUser(UserDTO userDto) throws EmailExistsException {
+	public void registerUser(UserDTO userDto) {
 
-		if (emailAlreadyExists(userDto.getEmail())) {
-			throw new EmailExistsException("There is already an account with this email: " + userDto.getEmail());
-		}
 		User user = new User();
 		user.setFirstName(userDto.getFirstName());
 		user.setLastName(userDto.getLastName());
@@ -40,16 +37,8 @@ public class UserService implements IUserService {
 		userDAO.save(user);
 	}
 
-	private boolean emailAlreadyExists(String email) {
-		return userDAO.findByEmail(email) != null;
-		// User user = rep.findByEmail(email);
-		// if (user != null) {
-		// return true;
-		// }
-		// return false;
-	}
-
 	@Override
+	@Transactional
 	public User findByEmail(String email) {
 		return userDAO.findByEmail(email);
 	}

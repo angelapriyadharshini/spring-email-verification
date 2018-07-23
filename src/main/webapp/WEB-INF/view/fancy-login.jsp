@@ -50,7 +50,7 @@
 									<!-- Validate login -->
 									<c:if test="${param.error != null}">
 										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
-											Invalid username and password.</div>
+											${error}</div>
 									</c:if>
 
 									<c:if test="${param.logout != null}">
@@ -66,7 +66,7 @@
 						<div style="margin-bottom: 25px" class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
-								name="username" placeholder="username" class="form-control">
+								name="email" placeholder="email" class="form-control">
 						</div>
 
 						<!-- Password -->
