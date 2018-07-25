@@ -11,4 +11,7 @@ public interface IUserService {
 	public void registerUser(UserDTO userDto);
 
 	public User findByEmail(String email);
+	public User loginUser(UserDTO userDTO);
+
+	public User findByEmailAndPassword(String email, String password);
 }

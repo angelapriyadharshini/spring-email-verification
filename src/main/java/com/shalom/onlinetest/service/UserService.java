@@ -43,4 +43,17 @@ public class UserService implements IUserService {
 		return userDAO.findByEmail(email);
 	}
 
+		@Override
+	public User findByEmailAndPassword(String email, String password) {
+		
+		return userDAO.findByEmailAndPassword(email,password);
+	}
+
+	@Transactional
+	@Override
+	public User loginUser(UserDTO userDTO) {
+		return userDAO.loginUser(userDTO);
+	}
+
+	
 }
