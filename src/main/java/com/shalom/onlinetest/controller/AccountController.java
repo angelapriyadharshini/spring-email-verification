@@ -30,12 +30,12 @@ public class AccountController {
 	
 	@PostMapping("/login")
 	public String login(@ModelAttribute("user") UserDTO userDto, BindingResult result, Model model){
-		String email = userDto.getEmail();
+		String username = userDto.getUserName();
 		String password = userDto.getPassword();
 		if(result.hasErrors()) {
 			return "fancy-login";
 		}
-		User loggedInUser = service.findByEmailAndPassword(email,password);
+		User loggedInUser = service.findByUsernameAndPassword(username,password);
 		if(loggedInUser==null) {
 			return "fancy-login";
 		}
@@ -53,14 +53,14 @@ public class AccountController {
 	@PostMapping("/registration")
 	public String registerNewUser(@ModelAttribute("user") UserDTO userDto, BindingResult result, Model model) {
 		User registeredUser = new User();
-		String email = userDto.getEmail();
+		String userName = userDto.getUserName();
 		if (result.hasErrors()) {
 			return "registration";
 		}
-		registeredUser = service.findByEmail(email);
+		registeredUser = service.findByUsername(userName);
 		if(registeredUser!=null) {
-			model.addAttribute("error","There is already an account with this email: " + email);
-			logger.info("There is already an account with this email: " + email);
+			model.addAttribute("error","There is already an account with this username: " + userName);
+			logger.info("There is already an account with this username: " + userName);
 			return "registration";
 		}
 		service.registerUser(userDto);

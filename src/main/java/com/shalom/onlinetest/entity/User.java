@@ -22,8 +22,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="email")
-	private String email;
+	@Column(name="username")
+	private String userName;
 	
 	@Column(name="firstname")
 	private String firstName;
@@ -36,9 +36,12 @@ public class User {
 	
 	@Column(name="enabled")
 	private boolean enabled;
+	
+	@Column(name="email")
+	private String email;
 
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Collection<Role> roles;
 
 	public int getId() {
@@ -49,12 +52,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return userName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 	public String getFirstName() {
@@ -89,6 +92,18 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
 	public Collection<Role> getRoles() {
 		return roles;
 	}
@@ -101,10 +116,10 @@ public class User {
 	public User() {
 	}
 
-	public User(int id, String email, String firstName, String lastName, String password, boolean enabled,
+	public User(int id, String email, String firstName, String lastName, String userName, String password, boolean enabled,
 			Collection<Role> roles) {
 		this.id = id;
-		this.email = email;
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
@@ -114,7 +129,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+		return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", enabled=" + enabled + ", roles=" + roles + "]";
 	}
 

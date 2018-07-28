@@ -1,17 +1,18 @@
 package com.shalom.onlinetest.service;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import com.shalom.onlinetest.dto.UserDTO;
 import com.shalom.onlinetest.entity.User;
-import com.shalom.onlinetest.error.EmailExistsException;
 
 @Service
-public interface IUserService {
+public interface IUserService extends UserDetailsService {
 	public void registerUser(UserDTO userDto);
 
-	public User findByEmail(String email);
+	public User findByUsername(String username);
+
 	public User loginUser(UserDTO userDTO);
 
-	public User findByEmailAndPassword(String email, String password);
+	public User findByUsernameAndPassword(String username, String password);
 }
