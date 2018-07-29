@@ -28,20 +28,20 @@ public class AccountController {
 		return "fancy-login";
 	}
 	
-	@PostMapping("/login")
-	public String login(@ModelAttribute("user") UserDTO userDto, BindingResult result, Model model){
-		String username = userDto.getUserName();
-		String password = userDto.getPassword();
-		if(result.hasErrors()) {
-			return "fancy-login";
-		}
-		User loggedInUser = service.findByUsernameAndPassword(username,password);
-		if(loggedInUser==null) {
-			return "fancy-login";
-		}
-		service.loginUser(userDto);
-		return "login-success";
-	}
+//	@PostMapping("/login")
+//	public String login(@ModelAttribute("user") UserDTO userDto, BindingResult result, Model model){
+//		String username = userDto.getUserName();
+//		String password = userDto.getPassword();
+//		if(result.hasErrors()) {
+//			return "fancy-login";
+//		}
+//		User loggedInUser = service.findByUsernameAndPassword(username,password);
+//		if(loggedInUser==null) {
+//			return "fancy-login";
+//		}
+//		service.loginUser(userDto);
+//		return "login-success";
+//	}
 
 	@GetMapping("/registration")
 	public String showRegistrationForm(Model model) {
