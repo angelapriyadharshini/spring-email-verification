@@ -49,8 +49,10 @@
 								<div>
 									<!-- Validate login -->
 									<c:if test="${param.error != null}">
+									<%-- <c:remove var = "SPRING_SECURITY_LAST_EXCEPTION" scope = "session" /> --%>
 										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
-											Invalid username and password</div>
+											${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}
+											</div>
 									</c:if>
 
 									<c:if test="${param.logout != null}">
@@ -77,7 +79,7 @@
 						</div>
 
 						<!-- Login/Submit Button -->
-						<div style="margin-top: 10px" class="form-group">
+						<div style="float:right" class="form-group">
 							<div class="col-sm-6 controls">
 								<button type="submit" class="btn btn-success">Login</button>
 							</div>

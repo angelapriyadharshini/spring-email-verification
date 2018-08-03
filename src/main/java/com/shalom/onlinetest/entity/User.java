@@ -114,6 +114,8 @@ public class User {
 	
 
 	public User() {
+		super();
+        this.enabled=false;
 	}
 
 	public User(int id, String email, String firstName, String lastName, String userName, String password, boolean enabled,

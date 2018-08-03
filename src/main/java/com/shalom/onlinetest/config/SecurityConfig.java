@@ -1,4 +1,4 @@
-	package com.shalom.onlinetest.config;
+package com.shalom.onlinetest.config;
 
 import javax.sql.DataSource;
 
@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
 		auth.setUserDetailsService(userService); //set the custom user details service
 		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
+		auth.setHideUserNotFoundExceptions(false);
 		return auth;
 	}
 
