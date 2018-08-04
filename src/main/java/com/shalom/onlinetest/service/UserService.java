@@ -21,6 +21,7 @@ import com.shalom.onlinetest.dao.IUserDAO;
 import com.shalom.onlinetest.dto.UserDTO;
 import com.shalom.onlinetest.entity.Role;
 import com.shalom.onlinetest.entity.User;
+import com.shalom.onlinetest.entity.VerificationToken;
 
 @Service
 public class UserService implements IUserService {
@@ -93,6 +94,13 @@ public class UserService implements IUserService {
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRolename())).collect(Collectors.toList());
+	}
+
+	@Override
+	public void createVerificationToken(User user, String token) {
+		VerificationToken newUserToken = new VerificationToken(token, user);
+		
+		
 	}
 
 }

@@ -15,4 +15,6 @@ public interface IUserService extends UserDetailsService {
 	public User loginUser(UserDTO userDTO);
 
 	public User findByUsernameAndPassword(String username, String password);
+
+	public void createVerificationToken(User user, String token);
 }
