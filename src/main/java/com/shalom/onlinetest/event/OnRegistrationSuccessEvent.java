@@ -8,6 +8,7 @@ import com.shalom.onlinetest.entity.User;
 
 public class OnRegistrationSuccessEvent extends ApplicationEvent {
 
+	private static final long serialVersionUID = 1L;
 	private String appUrl;
 	private Locale locale;
 	private User user;

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.shalom.onlinetest.dao.IRoleDAO;
 import com.shalom.onlinetest.dao.IUserDAO;
+import com.shalom.onlinetest.dao.TokenDAO;
 import com.shalom.onlinetest.dto.UserDTO;
 import com.shalom.onlinetest.entity.Role;
 import com.shalom.onlinetest.entity.User;
@@ -32,6 +33,9 @@ public class UserService implements IUserService {
 	private IRoleDAO roleDAO;
 
 	@Autowired
+	private TokenDAO tokenDAO;
+
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	// logger
@@ -39,7 +43,7 @@ public class UserService implements IUserService {
 
 	@Override
 	@Transactional
-	public void registerUser(UserDTO userDto) {
+	public User registerUser(UserDTO userDto) {
 
 		User user = new User();
 		user.setFirstName(userDto.getFirstName());
@@ -52,6 +56,7 @@ public class UserService implements IUserService {
 
 		user.setRoles(Arrays.asList(roleDAO.findByRoleName("ROLE_CANDIDATE")));
 		userDAO.save(user);
+		return user;
 	}
 
 	@Override
@@ -87,7 +92,7 @@ public class UserService implements IUserService {
 		} catch (UsernameNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				user.isEnabled(), true, true, true, mapRolesToAuthorities(user.getRoles()));
 	}
@@ -99,8 +104,13 @@ public class UserService implements IUserService {
 	@Override
 	public void createVerificationToken(User user, String token) {
 		VerificationToken newUserToken = new VerificationToken(token, user);
-		
-		
+		tokenDAO.save(newUserToken);
+	}
+
+	@Override
+	@Transactional
+	public VerificationToken getVerificationToken(String verificationToken) {
+		return tokenDAO.findByToken(verificationToken);
 	}
 
 }

@@ -69,15 +69,15 @@ public class AccountController {
 			logger.info("There is already an account with this username: " + userName);
 			return "registration";
 		}
-		
+
+		registeredUser = service.registerUser(userDto);
 		try {
 			String appUrl = request.getContextPath();
 			eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(),appUrl));
 		}catch(Exception re) {
-			return "emailError";
+			re.printStackTrace();
 //			throw new Exception("Error while sending confirmation email");
 		}
-		service.registerUser(userDto);
 		return "registrationSuccess";
 	}
 }
