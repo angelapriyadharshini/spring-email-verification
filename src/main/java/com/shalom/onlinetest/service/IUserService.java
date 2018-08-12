@@ -20,4 +20,6 @@ public interface IUserService extends UserDetailsService {
 	public void createVerificationToken(User user, String token);
 
 	public VerificationToken getVerificationToken(String verificationToken);
+
+	public void enableRegisteredUser(User user);
 }

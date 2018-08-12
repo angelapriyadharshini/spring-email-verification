@@ -17,6 +17,8 @@
 		<br> <br> Role(s):
 		<security:authentication property="principal.authorities" />
 	</p>
+	
+	
 
 	<security:authorize access="hasRole('RECRUITER')">
 

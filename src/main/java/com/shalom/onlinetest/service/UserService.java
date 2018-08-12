@@ -113,4 +113,10 @@ public class UserService implements IUserService {
 		return tokenDAO.findByToken(verificationToken);
 	}
 
+	@Override
+	@Transactional
+	public void enableRegisteredUser(User user) {
+		userDAO.save(user);
+	}
+
 }
