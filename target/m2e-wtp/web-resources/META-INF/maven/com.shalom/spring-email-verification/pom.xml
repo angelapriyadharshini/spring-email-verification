@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.shalom</groupId>
-	<artifactId>online-test-application</artifactId>
+	<artifactId>spring-email-verification</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>online-test-application</name>
+	<name>spring-email-verification</name>
 
 	<properties>
 		<springframework.version>5.0.6.RELEASE</springframework.version>
@@ -131,7 +131,7 @@
 
 	<!-- TO DO: Add support for Maven WAR Plugin -->
 	<build>
-		<finalName>online-test-application</finalName>
+		<finalName>spring-email-verification</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
